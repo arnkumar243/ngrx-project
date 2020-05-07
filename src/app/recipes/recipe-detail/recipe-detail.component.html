@@ -1,0 +1,47 @@
+<ng-template [ngIf]="!recipe">
+    <p>Recipe with Id {{id}} does not Exists.</p>
+</ng-template>
+<ng-template [ngIf]="recipe">
+    <div class="row">
+        <div class="col-xs-12">
+            <img style="height: 300px; width: 300px" [src]="recipe.url" [alt]="recipe.name" class="img-responsive" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <h3>{{ recipe.name }}</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <div appDropdownDirective class="btn-group">
+                <button class="btn btn-primary dropdown-toggle">
+                  Manage Recipe
+                  <span class="caret"></span>
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <li><a class="dropdown-item" (click)="addIngredientsToShoppingList()">To Shopping List</a></li>
+                  <li><a class="dropdown-item" [routerLink]="['edit']">Edit Recipe</a></li>
+                  <li><a class="dropdown-item" href="#">Delete Recipe</a></li>
+                </div>
+              </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <p>{{ recipe.description }}</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <p>Ingredients</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <ul class="list-group">
+                <li class="list-group-item" *ngFor="let ingredient of recipe.ingredients">{{ingredient.name}} - ({{ingredient.amount}})</li>
+            </ul>
+        </div>
+    </div>
+</ng-template>

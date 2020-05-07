@@ -1,0 +1,70 @@
+<div class="row">
+    <div class="col-xs-12">
+        <form [formGroup]="recipeForm" (ngSubmit)="onSubmit()">
+            <div class="row">
+                <div class="col-xs-12">
+                    <button class="btn btn-success">Save</button>
+                    <button class="btn btn-danger">Cancel</button>
+                </div>
+            </div>
+            <hr/>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="form-group">
+                        <label for="name">Recipe Name</label>
+                        <input type="text" id="name" class="form-control" formControlName="name">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="form-group">
+                        <label for="imageUrl">Image Path</label>
+                        <input type="text" id="imageUrl" class="form-control" formControlName="url" #imagPath>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <img [src]="imagPath.value" alt="" class="img-responsive">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <textarea type="text" id="imageUrl" class="form-control" rows=6 formControlName="description">
+                        </textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="row" *ngFor="let control of getIngredientsControl(); let i = index;">
+                <div class="col-xs-12">
+                    <div class="row" [formGroup]="control">
+                        <div class="col-xs-7">
+                            <div class="form-group">
+                                <input type="text" class="form-control" formControlName="name">
+                            </div>
+                        </div>
+                        <div class="col-xs-3">
+                            <div class="form-group">
+                                <input type="number" class="form-control" formControlName="amount">
+                            </div>
+                        </div>
+                        <div class="col-xs-2">
+                            <div class="form-group">
+                                <button (click)="deleteIngredient(i)" type="button" class="btn btn-danger">X</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr/>
+            <div class="row"> 
+                <div class="col-xs-12">
+                    <button (click)="addIngredient()" type="button" class="btn btn-success">Add Ingredient</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
